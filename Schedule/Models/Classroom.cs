@@ -8,5 +8,8 @@ namespace Schedule.Models
     public class Classroom
     {
         public string Id { get; set; }
+
+        //Foreign relations
+        public List<Class> Classes { get; set; }
     }
 }

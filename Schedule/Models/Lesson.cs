@@ -10,5 +10,8 @@ namespace Schedule.Models
         public string Id { get; set; }
 
         public string StartTime { get; set; }
+
+        //Foreign relations
+        public List<Lesson> Lessons { get; set; }
     }
 }

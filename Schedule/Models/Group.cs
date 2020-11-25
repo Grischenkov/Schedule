@@ -12,6 +12,14 @@ namespace Schedule.Models
         public int Course { get; set; }
 
         //Foreign keys
-        public int Faculty { get; set; }
+        public int FacultyId { get; set; }
+        public virtual Faculty Faculty { get; set; }
+
+        //Foreign relations
+        public List<Student> Students { get; set; }
+
+        public List<Class> Classes { get; set; }
+
+        public List<Schedule> Schedules { get; set; }
     }
 }

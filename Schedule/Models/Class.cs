@@ -16,12 +16,16 @@ namespace Schedule.Models
         public string NewDateTime { get; set; }
 
         //Foreign keys
-        public int Group { get; set; }
+        public int GroupId { get; set; }
+        public virtual Group Group { get; set; }
 
-        public int Teacher { get; set; }
+        public int TeacherId { get; set; }
+        public virtual Teacher Teacher { get; set; }
 
-        public int Schedule { get; set; }
+        public int ScheduleId { get; set; }
+        public virtual Schedule Schedule { get; set; }
 
-        public string Classroom { get; set; }
+        public string ClassroomId { get; set; }
+        public virtual Classroom Classroom { get; set; }
     }
 }
