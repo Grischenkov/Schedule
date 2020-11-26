@@ -66,7 +66,7 @@ namespace Schedule.ModelMocks
                     Teacher = _teacher.GetTeachers.First(),
                     Schedule = _schedule.GetSchedules.First(),
                     Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
-                },
+                }
             };
     }
 }

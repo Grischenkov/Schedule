@@ -26,6 +26,9 @@ namespace Schedule.Models
 
         public string LessonId { get; set; }
         public virtual Lesson Lesson { get; set; }
+        
+        public string DayId { get; set; }
+        public virtual Day Day { get; set; }
 
         //Foreign relations
         public List<Class> Classes { get; set; }

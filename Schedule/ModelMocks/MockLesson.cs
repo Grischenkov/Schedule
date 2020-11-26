@@ -81,7 +81,7 @@ namespace Schedule.ModelMocks
                 {
                     Id = "6.2", 
                     StartTime = "20:30"
-                },
+                }
             };
     }
 }

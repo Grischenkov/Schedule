@@ -11,6 +11,7 @@ namespace Schedule.ModelMocks
         private readonly IGroup _group = new MockGroup();
         private readonly ITeacher _teacher = new MockTeacher();
         private readonly ILesson _lesson = new MockLesson();
+        private readonly IDay _day = new MockDay();
 
         public Models.Schedule GetSchedule(string id)
         {
@@ -25,22 +26,24 @@ namespace Schedule.ModelMocks
                     Id = 1,
                     Subject = "Средства визуализации данных",
                     Period = 0,
-                    StartDate = "02/09/2020",
+                    StartDate = "01/09/2020",
                     FinishDate = "31/12/2020",
                     Group = _group.GetGroup(id: 485),
                     Teacher = _teacher.GetTeachers.First(),
-                    Lesson = _lesson.GetLesson(id: "5.2")
+                    Lesson = _lesson.GetLesson(id: "5.2"),
+                    Day = _day.GetDay(id: 4)
                 },
                 new Models.Schedule
                 {
                     Id = 2,
                     Subject = "Средства визуализации данных",
                     Period = 0,
-                    StartDate = "02/09/2020",
+                    StartDate = "01/09/2020",
                     FinishDate = "31/12/2020",
                     Group = _group.GetGroup(id: 484),
                     Teacher = _teacher.GetTeachers.First(),
-                    Lesson = _lesson.GetLesson(id: "5.2")
+                    Lesson = _lesson.GetLesson(id: "5.2"),
+                    Day = _day.GetDay(id: 4)
                 }
             };
     }
