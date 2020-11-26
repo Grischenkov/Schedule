@@ -8,8 +8,8 @@ namespace Schedule.ModelInterfaces
 {
     public interface ITeacher
     {
-        public Teacher GeTeacher(int id);
+        public Teacher GetTeacher(int id);
 
-        public IEnumerable<Teacher> GeTeachers { get; }
+        public IEnumerable<Teacher> GetTeachers { get; }
     }
 }
