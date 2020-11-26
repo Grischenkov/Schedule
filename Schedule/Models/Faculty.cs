@@ -14,6 +14,6 @@ namespace Schedule.Models
         //Foreign relations
         public List<Group> Groups { get; set; }
 
-        public List<Department> Departments { get; set; }
+        public List<Teacher> Teachers { get; set; }
     }
 }

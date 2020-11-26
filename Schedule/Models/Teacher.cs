@@ -27,7 +27,5 @@ namespace Schedule.Models
         public List<Class> Classes { get; set; }
 
         public List<Schedule> Schedules { get; set; }
-
-        public List<Department> Departments { get; set; }
     }
 }
