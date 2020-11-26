@@ -1,0 +1,397 @@
+* {
+	margin: 			0;
+	padding: 			0;
+	font-size: 	 		14px;
+	line-height: 		1.5;
+    font-family: 		"Open Sans", sans-serif;
+    user-select: 		none;
+    -o-user-select: 	none;
+    -ms-user-select: 	none;
+	-moz-user-select: 	none;
+    webkit-user-select: none;
+}
+
+h3 {
+	padding: 			1em;
+	text-transform: 	uppercase;
+}
+
+h4 {
+	margin: 			5px 5px;
+}
+
+p {
+	padding: 			0 1em;
+}
+
+a {
+    color:              rgb(134, 134, 134);
+	text-decoration:    none;
+}
+
+a:hover {
+	color:				rgb(0, 117, 255);
+}
+
+html, 
+body {
+	min-height: 100%;
+}
+
+/*--------------Header--------------*/
+header a {
+    color:				rgb(200, 200, 200);
+	text-decoration:	none;
+}
+
+header a:hover {
+	color: 				rgb(255, 255, 255);
+    text-decoration:	none;
+}
+
+.header-top {
+	color:					rgb(255, 255, 255);
+	display: 				grid;
+	padding: 				1.5em;
+	background-color:		rgb(30, 30, 30);
+	grid-template-columns:	repeat(3, 1fr);
+}
+
+.header-top .logo {
+	display: 				flex;
+	align-items: 			center;
+	justify-content: 		left;
+}
+
+.header-top .title {
+	display: 				flex;
+	align-items: 			center;
+	justify-content: 		center;
+}
+
+.header-top .account {
+	display: 				flex;
+	align-items: 			center;
+	justify-content: 		flex-end;
+}
+
+
+/*Mobile*/
+@media (max-width: 768px) {
+    .header-top {
+		padding: 				.5em;
+		grid-template-columns: 	1fr;
+	}
+	.header-top .logo {
+		justify-content: 		center;
+	}
+	.header-top .account {
+		justify-content: 		center;
+	}
+}
+
+/*--------------Footer--------------*/
+footer a {
+    color:				rgb(200, 200, 200);
+	text-decoration:	none;
+}
+
+footer a:hover {
+	color: 				rgb(255, 255, 255);
+    text-decoration:	none;
+}
+
+footer {
+	color:					rgb(255, 255, 255);
+    background-color:		rgb(30, 30, 30);
+}
+
+.footer-top {
+	display: 				grid;
+	padding: 				10px 0 20px 0;
+    border-bottom: 			rgb(44, 44, 44) 1px solid;
+    grid-template-columns:	2fr 1fr;
+}
+
+.footer-bottom {
+	padding: 				10px 0 20px 0;
+}
+
+/*Mobile*/
+@media (max-width: 768px) {
+    .footer-top {
+		grid-template-columns: 1fr;
+	}
+}
+
+
+/*--------------Main--------------*/
+main {
+	color: 					rgb(30, 30, 30);
+	background-color:		rgb(255, 255, 255);
+	margin: 				20px 40px;
+}
+
+.person {
+	display: grid;
+	grid-template-rows: 1fr 2fr 1fr;
+}
+
+.person .name p{
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.person .title {
+	font-weight: bold;
+}
+
+.person .buttons {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 40px;
+}
+
+.person .buttons .logout-btn,
+.person .buttons .back-btn {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.person .params .stud{
+	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+}
+
+.person .params .stud .faculty,
+.person .params .stud .group,
+.person .params .stud .mail, 
+.person .params .stud .password {
+	display: grid;
+	grid-template-columns: 1fr 2fr 2fr;
+	margin-top: 40px;
+}
+
+
+
+
+/*Mobile*/
+@media (max-width: 768px) {
+	.person {
+		display: grid;
+		grid-template-rows: .5fr 5fr 1fr;
+	}
+	.person .params .stud .faculty,
+	.person .params .stud .group {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(2,1fr);
+	}
+	
+	.person .params .stud .mail, 
+	.person .params .stud .password {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(3,1fr);
+	}
+	.person .buttons .back-btn {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+}
+
+
+
+
+
+/*--------------Button--------------*/
+button {
+	color:				rgb(255, 255, 255);
+	border:				0px;
+	height: 			100%;
+	cursor: 			pointer;
+	outline: 			none !important;
+	padding: 			0 15px;
+	max-width: 			100%;
+	max-height: 		45px;
+	min-height: 		45px;
+	text-align: 		center;
+	border-radius:		20px;
+	background-color:	rgb(33, 33, 33);
+}
+
+button:hover {
+	background-color:	rgb(0, 117, 255);
+}
+
+
+
+
+html,
+body {
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+main {
+  flex: 1 0 auto;
+}
+footer {
+  flex: 0 0 auto;
+}
+
+
+/*Input*/
+input[type="text"],
+input[type="password"] {
+	width: 				90%;
+    height: 			30px;
+    border:				1px solid rgb(228, 228, 228);
+	outline: 			none !important;
+    padding: 			0 15px;
+    border-radius: 		5px;
+	background-color:	rgb(255, 255, 255);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus { 
+	outline: 			none !important;
+	border-color:		rgb(0, 117, 255);
+}
+
+/*--------------Class--------------*/
+.close-button {
+	width: 30px;
+	height: 30px;
+}
+
+.close-button svg {
+	background:			url(/IMG/close.svg) no-repeat center / cover;
+}
+
+.mail-inp,
+.pass-inp { 
+	padding-top: 15%;
+}
+
+#mail-change .head .title,
+#pass-change .head .title {
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
+}
+
+#mail-change .head .title h3,
+#pass-change .head .title h3 {
+	padding: 0;
+}
+
+#mail-change .head button,
+#pass-change .head button {
+	width: 				100%;
+	border:				0px;
+	height: 			100%;
+	margin: 			5px 0 5px 0;
+	cursor: 			pointer;
+	outline: 			none !important;
+	max-width: 			100px;
+	background: 		none;
+	max-height: 		35px;
+	border-radius:		10px;
+}
+
+#mail-change .head button:hover,
+#pass-change .head button:hover{
+	background-color:	rgb(242, 242, 242);
+}
+
+#mail-screen-blocker,
+#pass-screen-blocker {
+	width: 		100%;
+	height: 	100%;
+	display: 	none;
+	position: fixed;
+	top:0;
+	left:0;
+	z-index: 100;
+	background: rgba(134, 134, 134, .25);
+}
+
+#mail-change,
+#pass-change {
+	display:            	grid;
+    padding:            	20px 50px;
+	grid-template-rows: 	1fr 5fr;
+	background-color:   	rgb(255, 255, 255);
+    border-radius:      	15px;
+}
+
+#mail-change .head, 
+#pass-change .head {
+	display: grid;
+	grid-template-columns: 5fr .5fr;
+}
+
+#mail-change .content {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+}
+
+#pass-change .content {
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+}
+
+
+#mail-change .login-btn {
+	display: flex;
+	align-items: 			flex-start;
+	justify-content: 		flex-end;
+}
+
+#mail-change a,
+#pass-change a {
+    color:              rgb(134, 134, 134);
+	text-decoration:    none;
+}
+
+#mail-change a:hover,
+#pass-change a:hover {
+	color:				rgb(0, 117, 255);
+}
+
+.buttons {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.cancel-button svg {
+	background:			url("/IMG/date.svg") no-repeat center / cover;
+}
+
+#mail-screen-blocker:target,
+#pass-screen-blocker:target {
+	display:            	flex;
+    align-items: 			center;
+    justify-content: 		center;
+}
+
+/*Mobile*/
+@media (max-width: 768px) {
+	#mail-change,
+	#pass-change {
+		padding:            	4px 10px;
+		grid-template-rows: 	1fr 3fr;
+		max-width: 90%;
+		max-height: 100%
+	}
+	
+	input[type="text"],
+	input[type="password"] {
+		width: 				85%;
+	}
+}

@@ -1,0 +1,281 @@
+/*------------GENERAL------------*/
+* {
+	margin: 			0;
+	padding: 			0;
+	font-size: 	 		14px;
+	line-height: 		1;
+	font-family: 		"Open Sans", sans-serif;
+	user-select: 		none;
+    -o-user-select: 	none;
+    -ms-user-select: 	none;
+	-moz-user-select: 	none;
+    webkit-user-select: none;
+}
+
+html, 
+body {
+    height:             100%;
+    background-color:   rgb(200, 200, 200);
+    display:            flex;
+    align-items: 		center;
+    justify-content: 	center;
+}
+
+h3 {
+	text-transform: 	uppercase;
+}
+
+a {
+    color:              rgb(134, 134, 134);
+	text-decoration:    none;
+}
+
+a:hover {
+	color:				rgb(0, 117, 255);
+}
+
+
+/*Main*/
+main {
+    width:              	100%;
+    height:             	100%;
+    display:            	flex;
+    align-items: 			center;
+    justify-content: 		center;
+}
+
+.block {
+    display:            	grid;
+    padding:            	20px 50px;
+    border-radius:      	15px;
+    background-color:   	rgb(255, 255, 255);
+    /*grid-template-rows: 	repeat(3, 1fr);*/
+}
+
+.login .block {
+	grid-template-rows: 1fr 2fr 2fr;
+}
+
+.block .head {
+	display:            	grid;
+	grid-template-columns: .5fr 5fr;
+}
+
+
+.block .head button {
+	width: 				100%;
+	border:				0px;
+	height: 			100%;
+	margin: 			5px 0 5px 0;
+	cursor: 			pointer;
+	outline: 			none !important;
+	max-width: 			100px;
+	background: 		none;
+	max-height: 		35px;
+	border-radius:		10px;
+}
+
+.block .head button:hover {
+	background-color:	rgb(242, 242, 242);
+}
+
+.block .head .back-btn {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.block .head .title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.block .mail-inp, 
+.block .text-inp, 
+.block .pass-inp {
+	padding-top:			20px;
+	text-transform:			uppercase;
+}
+
+.block .buttons {
+	display:				grid;
+	margin-top: 			20px; 
+	grid-template-columns:	repeat(2, 1fr);
+	grid-template-rows: 	repeat(2, 1fr);
+}
+
+.back-button {
+	width: 30px;
+	height: 30px;
+}
+
+.back-button svg {
+	background:			url(/IMG/back.svg) no-repeat center / cover;
+}
+
+/*Input*/
+input[type="text"],
+input[type="password"] {
+	width: 				90%;
+    height: 			30px;
+    border:				1px solid rgb(228, 228, 228);
+	outline: 			none !important;
+    padding: 			0 15px;
+    border-radius: 		5px;
+	background-color:	rgb(255, 255, 255);
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus { 
+	outline: 			none !important;
+	border-color:		rgb(0, 117, 255);
+}
+
+input[type="checkbox"] {
+	display: 			none;
+}
+
+label:before {
+	width: 				14px;
+	height: 			14px;
+	border: 			1px solid rgb(134, 134, 134);
+	cursor: 			pointer;
+	content: 			" ";
+	display: 			inline-block;
+	margin-right: 		5px;
+	vertical-align: 	top; 
+}
+   
+input:checked + 
+label:before {
+	background: 		url(/IMG/check.svg) no-repeat center / cover;    
+	border-color:		rgb(0, 117, 255);
+	background-color:	rgb(0, 117, 255);
+}
+
+/*Button*/
+button {
+	color:				rgb(255, 255, 255);
+	border:				0px;
+	height: 			100%;
+	cursor: 			pointer;
+	outline: 			none !important;
+	padding: 			0 15px;
+	max-width: 			100%;
+	max-height: 		45px;
+	min-height: 		45px;
+	text-align: 		center;
+	border-radius:		20px;
+	background-color:	rgb(33, 33, 33);
+}
+
+button:hover {
+	background-color:	rgb(0, 117, 255);
+}
+
+
+/*------------LOGIN------------*/
+.login .buttons .checkbox {
+	color:					rgb(134, 134, 134);
+	display:            	flex;
+    align-items: 			flex-start;
+	justify-content: 		left;
+}
+
+.login .buttons .restore-btn {
+	display:            	flex;
+    align-items: 			flex-start;
+	justify-content: 		flex-end;
+}
+
+.login .buttons .register-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		flex-end;
+}
+
+.login .buttons .login-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		left;
+}
+
+
+/*------------RESTORE------------*/
+.restore .description {
+	display:            	flex;
+    align-items: 			center;
+	justify-content:		left;
+}
+
+.restore .buttons .other-btns {
+	display:                grid;
+	grid-template-columns:  repeat(2, 1fr);
+}
+
+.restore .buttons .login-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		flex-end;
+}
+
+.restore .buttons .register-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		flex-start;
+}
+
+.restore .buttons .restore-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		left;
+}
+
+
+/*------------REGISTER------------*/
+.register .buttons .register-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		left;
+}
+
+.register .buttons .login-btn {
+	display:            	flex;
+    align-items: 			center;
+	justify-content: 		flex-end;
+}
+
+
+/*Mobile*/
+@media (max-width: 768px) {
+    /*------------GENERAL------------*/
+    .block {
+		top:  0; bottom: 0;
+		left: 0; right:  0;
+		
+		padding:		5% 2.5%;
+		position:		fixed;
+		max-width:		100%;
+		overflow-y:		scroll;
+	    max-height:		100vh;
+	    border-radius:	0;
+	}
+    
+    /*------------RESTORE------------*/
+	.restore .buttons {
+		grid-template-columns: 1fr;
+		grid-template-rows: repeat(2, 1fr);
+	}
+	
+	.restore .buttons .other-btns {
+		display: flex;
+		text-justify: left;
+		min-height: 45px;
+	}
+	
+	.restore .buttons .restore-btn {
+		display: flex;
+		align-items: center;
+	}
+}
