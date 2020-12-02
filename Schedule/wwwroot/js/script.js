@@ -17,20 +17,6 @@ jQuery(($) => {
         $(this).parent().prev().text($(this).text());
         $(this).parent().prev().prev().val($(this).text());
     });
-	
-	$('.block-head').on('click', function (e) {
-		let tmp = document.getElementById('day');
-		
-		$(tmp).parent().prev().text($(tmp).text());
-		$(tmp).parent().prev().prev().val($(tmp).text());
-		
-		document.getElementById('month-view').style.display = 'none';
-		document.getElementById('week-view').style.display = 'none';
-		document.getElementById('day-view').style.display = 'block';
-		
-		// e.preventDefault();
-    	// e.stopPropagation();
-	});
 
     $(document).click(function (e) {
         if (!$(e.target).closest('.select').length) {
