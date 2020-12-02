@@ -36,9 +36,25 @@
                     </h3>
                 </div>
                 <div class="account">
-                    <a href="/Account/Login">
-                        Личный кабинет
-                    </a>
+                    @{
+                        if (Model.User != null)
+                        {
+                            if (Model.User.IsTeacher)
+                            {
+                                string name = $"{Model.Teacher.Surname} {Model.Teacher.Name} {Model.Teacher.MiddleName}, Teacher";
+                                <a href="/Account/Login">@name</a>
+                            }
+                            else
+                            {
+                                string name = $"{Model.Student.Surname} {Model.Student.Name} {Model.Student.MiddleName}, гр.{Model.Student.Group.Id}";
+                                <a href="/Account/Login">@name</a>
+                            }
+                        }
+                        else
+                        {
+                            <a href="/Account/Login">Личный кабинет</a>
+                        }
+                    }
                 </div>
             </div>
         </header>

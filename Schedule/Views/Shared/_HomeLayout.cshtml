@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Schedule.Models
 @using Schedule.Models.ViewModels
 @model HomeViewModel
 
@@ -27,10 +28,114 @@
     </head>
 
     <body>
+        @if(@Model.GetClass != null)
+        {
+            Class _class = Model.GetClass;
+            <div id="screen-blocker">
+                <div id="class">
+                    <div class="subject-head">
+                        <div class="title">
+                            <h3>@_class.Schedule.Subject</h3>
+                        </div>
+                        <div class="close-btn">
+                            <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date})">
+                                <button class="close-button">
+                                    <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10"></svg>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="subject-content">
+                        <div class="subject-description">
+                            <div class="date">
+                                <div class="title">
+                                    <p>Дата:</p>
+                                </div>
+                                <div class="content">
+                                    <p>@_class.DateTime.Date.ToString("dd/MM/yyyy")</p>
+                                </div>
+                            </div>
+                            <div class="time">
+                                <div class="title">
+                                    <p>Время:</p>
+                                </div>
+                                <div class="content">
+                                    <p>@_class.DateTime.TimeOfDay.ToString()</p>
+                                </div>
+                            </div>
+                            <div class="group">
+                                <div class="title">
+                                    <p>Группа:</p>
+                                </div>
+                                <div class="content">
+                                    <p>@_class.Group.Id</p>
+                                </div>
+                            </div>
+                            <div class="teacher">
+                                <div class="title">
+                                    <p>Преподаватель:</p>
+                                </div>
+                                <div class="content">
+                                    @{
+                                        string name = $"{_class.Teacher.Surname} {_class.Teacher.Name} {_class.Teacher.MiddleName}";
+                                        <p>@name</p>
+                                    }
+                                </div>
+                            </div>
+                            <div class="class">
+                                <div class="title">
+                                    <p>Аудитория:</p>
+                                </div>
+                                <div class="content">
+                                    <p>@_class.Classroom.Id</p>
+                                </div>
+                            </div>
+                            <div class="IsCanceled">
+                                @if (_class.IsCanceled)
+                                {
+                                    <div class="title">
+                                        <p>Отменено</p>
+                                    </div>
+                                    <div></div>
+                                }
+                                else if (_class.IsPostponed)
+                                {
+                                    string newDate = $"{_class.NewDateTime.Date:dd/MM/yyyy} {_class.DateTime.TimeOfDay}";
+                                    <div class="title">
+                                        <p>Перенесено</p>
+                                    </div>
+                                    <div class="content">
+                                        <p>@newDate</p>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <div class="sync-btn">
+                                <button class="sync-button" title="Экспортировать в Google Calendar">
+                                    <svg aria-hidden="true" focusable="false" width="30" height="30" viewBox="0 0 30 30"></svg>
+                                </button>
+                            </div>
+                            <div class="edit-btn">
+                                @{
+                                    if (Model.User != null && Model.User.IsTeacher) 
+                                    {
+                                        <a href="@Url.Action("Class", "Home", new {Id = Model.ClassId})">
+                                            <p>Редактировать</p>
+                                        </a>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    
         <header>
             <div class="header-top">
                 <div class="logo">
-                    <a href="">
+                    <a href="/Home">
                         <img src="/img/logo.svg" alt="Санкт-Петербургский государственный технологический институт">
                     </a>
                 </div>
@@ -40,9 +145,25 @@
                     </h3>
                 </div>
                 <div class="account">
-                    <a href="/Account/Login">
-                        Личный кабинет
-                    </a>
+                    @{
+                        if (Model.User != null)
+                        {
+                            if (Model.User.IsTeacher)
+                            {
+                                string name = $"{Model.Teacher.Surname} {Model.Teacher.Name} {Model.Teacher.MiddleName}, Teacher";
+                                <a href="/Account/Login">@name</a>
+                            }
+                            else
+                            {
+                                string name = $"{Model.Student.Surname} {Model.Student.Name} {Model.Student.MiddleName}, гр.{Model.Student.Group.Id}";
+                                <a href="/Account/Login">@name</a>
+                            }
+                        }
+                        else
+                        {
+                            <a href="/Account/Login">Личный кабинет</a>
+                        }
+                    }
                 </div>
             </div>
             <div class="header-nav">
@@ -53,7 +174,7 @@
                             @{
                                 foreach (var faculty in Model.GetFaculties)
                                 {
-                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = faculty.Name, Course = "", Group = ""})">
+                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = faculty.Name, Course = "", Group = "", Date = Model.Date})">
                                         <li class="item">@faculty.Name</li>
                                     </a>
                                 }
@@ -68,7 +189,7 @@
                             @{
                                 foreach (var course in Model.GetCourses)
                                 {
-                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = course.Name, Group = ""})">
+                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = course.Name, Group = "", Date = Model.Date})">
                                         <li class="item">@course.Name</li>
                                     </a>
                                 }
@@ -81,9 +202,9 @@
                         <div class="head">@Model.Group</div>
                         <ul class="list" style="display: none;">
                             @{
-                                foreach (var group in Model.GetGroups)
+                                foreach (var group in Model.GetGroups(Model.Faculty, Model.Course))
                                 {
-                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = group.Id.ToString()})">
+                                    <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = group.Id, Date = Model.Date})">
                                         <li class="item">@group.Id</li>
                                     </a>
                                 }
@@ -124,11 +245,19 @@
                                 Сегодня
                             </button>
                         </a>
-                        <a href="@Url.Action("Index", "Home", new {viewType=Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date.AddDays(-1)})">
-                            <button class="up-button" title="Перейти к предыдущей дате">
-                                <svg aria-hidden="true" focusable="false" width="25" height="25" viewBox="0 0 25 25"></svg>
-                            </button>
-                        </a>
+                        @{
+                            int i = -1;
+                            if ((int)Model.Date.AddDays(-1).DayOfWeek == 0)
+                            {
+                                i -= 2;
+                            }
+                            
+                            <a href="@Url.Action("Index", "Home", new {viewType=Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date.AddDays(i)})">
+                                <button class="up-button" title="Перейти к предыдущей дате">
+                                    <svg aria-hidden="true" focusable="false" width="25" height="25" viewBox="0 0 25 25"></svg>
+                                </button>
+                            </a>
+                        }
                         <a href="@Url.Action("Index", "Home", new {viewType=Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date.AddDays(1)})">
                             <button class="down-button" title="Перейти к следующей дате">
                                 <svg aria-hidden="true" focusable="false" width="25" height="25" viewBox="0 0 25 25"></svg>
@@ -206,7 +335,6 @@
 
         <!-- JS -->
         <script src="/js/script.js"></script>
-        <script src="/js/showhide.js"></script>
 
     </body>
 </html>
