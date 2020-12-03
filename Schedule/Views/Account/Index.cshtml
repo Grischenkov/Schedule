@@ -1,0 +1,176 @@
+﻿@using Schedule.Models.ViewModels
+@model AccountViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<div id="mail-screen-blocker">
+    <form method="post">
+        <input type="hidden" name="type" value="mail"/>
+        <div id="mail-change">
+            <div class="head">
+                <div class="title">
+                    <h3>Изменить адрес электронной почты</h3>
+                </div>
+                <div class="close-btn">
+                    <a href="@Url.Action("Index")" class="close">
+                        <button class="close-button">
+                            <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10"></svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                <div class="mail-inp">
+                    <span>Введите новый адрес электронной почты:</span>
+                    <div>
+                        <input type="text" name="newMail">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="save-btn">
+                        <button class="save-button" type="submit">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="pass-screen-blocker">
+    <form method="post">
+        <input type="hidden" name="type" value="pass"/>
+        <div id="pass-change">
+            <div class="head">
+                <div class="title">
+                    <h3>Изменить пароль</h3>
+                </div>
+                <div class="close-btn">
+                    <a href="@Url.Action("Index")" class="close">
+                        <button class="close-button">
+                            <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10"></svg>
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="content">
+                <div class="old pass-inp">
+                    <span>Введите старый пароль:</span>
+                    <div>
+                        <input type="password" name="oldPass">
+                    </div>
+                </div>
+                <div class="new pass-inp">
+                    <span>Введите новый пароль:</span>
+                    <div>
+                        <input type="password" name="newPass">
+                    </div>
+                </div>
+                <div class="new pass-inp">
+                    <span>Введите новый пароль еще раз:</span>
+                    <div>
+                        <input type="password" name="repeatNewPass">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <div class="save-btn">
+                        <button class="save-button" type="submit">Сохранить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="person">
+    <div class="name">
+        @{
+            string name = !Model.User.IsTeacher ? $"{Model.Student.Surname} {Model.Student.Name} {Model.Student.MiddleName}" : $"{Model.Teacher.Surname} {Model.Teacher.Name} {Model.Teacher.MiddleName}";
+            <p>@name</p>
+        }
+    </div>
+    <div class="params">
+        <div class="stud">
+            <div class="faculty">
+                <div class="title">
+                    <p>Факультет:</p>
+                </div>
+                <div class="content">
+                    @{
+                        if (!Model.User.IsTeacher)
+                        {
+                            <p>@Model.Student.Group.Faculty.Name</p>
+                        }
+                        else
+                        {
+                            <p>@Model.Teacher.Faculty.Name</p>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="group">
+                @{
+                    if (!Model.User.IsTeacher)
+                    {
+                        <div class="title">
+                            <p>Группа:</p>
+                        </div>
+                        <div class="content">
+                            <p>@Model.Student.Group.Id</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="title">
+                            <p></p>
+                        </div>
+                        <div class="content">
+                            <p></p>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="mail">
+                <div class="title">
+                    <p>Почта:</p>
+                </div>
+                <div class="content">
+                    <p>@Model.User.Mail</p>
+                </div>
+                <div class="button">
+                    <a href="@Url.Action("Index")#mail-screen-blocker">
+                        <p>Изменить</p>
+                    </a>
+                </div>
+            </div>
+            <div class="password">
+                <div class="title">
+                    <p>Пароль:</p>
+                </div>
+                <div class="content">
+                    <p>@Model.User.Password</p>
+                </div>
+                <div class="button">
+                    <a href="@Url.Action("Index")#pass-screen-blocker">
+                        <p>Изменить</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="logout-btn">
+            <a href="@Url.Action("Logout", "Account")">
+                <button class="logout-button">
+                    Выйти
+                </button>
+            </a>
+        </div>
+        <div class="back-btn">
+            <a href="/Home">
+                <p>Назад</p>
+            </a>
+        </div>
+    </div>
+</div>
