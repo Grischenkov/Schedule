@@ -1,0 +1,115 @@
+﻿@using Schedule.Models.ViewModels
+@model HomeClassViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<link href="/css/class.css" rel="stylesheet">
+@if (@Model.GetClass != null)
+{
+    <div class="subject-head">
+        <div class="title">
+            <h3>@Model.Class.Schedule.Subject</h3>
+        </div>
+    </div>
+    <form method="post">
+        <div class="subject-content">
+            <div class="subject-description">
+                <div class="date">
+                    <div class="title">
+                        <p>Дата:</p>
+                    </div>
+                    <div class="content">
+                        @if (Model.ViewType == "Editable")
+                        {
+                            <input type="date", name="newDate"/>
+                        }
+                        else
+                        {
+                            <p>@Model.Class.DateTime.Date.ToString("dd/MM/yyyy")</p>
+                        }
+                    </div>
+                </div>
+                <div class="time">
+                    <div class="title">
+                        <p>Время:</p>
+                    </div>
+                    <div class="content">
+                        @if (Model.ViewType == "Editable")
+                        {
+                            <div class="select">
+                                <div class="head" id="lessonTime">@Model.Class.DateTime.TimeOfDay</div>
+                                <ul class="list" style="display: none;">
+                                    @{
+                                        foreach (var lesson in Model.GetLessons)
+                                        {
+                                            <li class="item">@lesson.StartTime.TimeOfDay</li>
+                                        }
+                                    }
+                                </ul>
+                                <input type="hidden" name="LessonTime" id="LessonTime_hidden"/>
+                                <script type="text/javascript">
+                                    setInterval(function () { document.getElementById("LessonTime_hidden").value = document.getElementById("LessonTime").innerHTML; }, 5);
+                                </script>
+                            </div>
+                        }
+                        else
+                        {
+                            <p>@Model.Class.DateTime.TimeOfDay</p>
+                        }
+                    </div>
+                </div>
+                <div class="group">
+                    <div class="title">
+                        <p>Группа:</p>
+                    </div>
+                    <div class="content">
+                        <p>@Model.Class.Group.Id</p>
+                    </div>
+                </div>
+                <div class="teacher">
+                    <div class="title">
+                        <p>Преподаватель:</p>
+                    </div>
+                    <div class="content">
+                        @{
+                            string name = $"{Model.Class.Teacher.Surname} {Model.Class.Teacher.Name} {Model.Class.Teacher.MiddleName}";
+                            <p>@name</p>
+                        }
+                    </div>
+                </div>
+                <div class="class">
+                    <div class="title">
+                        <p>Аудитория:</p>
+                    </div>
+                    <div class="content">
+                        <p>@Model.Class.Classroom.Id</p>
+                    </div>
+                </div>
+            </div>
+            <div class="buttons">
+                @if (Model.ViewType == "Editable")
+                {
+                    <div class="save-btn">                            
+                        <button class="save-button" type="submit">Сохранить изменения</button>
+                    </div>
+                }
+                else
+                {
+                    <a href="@Url.Action("CancelClass", "Home", new {id = Model.Class.Id})">
+                        <div class="cancel-btn">
+                            <button class="cancel-button">Отменить занятие</button>
+                        </div>
+                    </a>
+                }
+                <div class="back-btn">
+                    <a href="/Home">
+                        <p>Назад</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+}
