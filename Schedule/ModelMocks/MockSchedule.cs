@@ -12,6 +12,7 @@ namespace Schedule.ModelMocks
         private readonly ITeacher _teacher = new MockTeacher();
         private readonly ILesson _lesson = new MockLesson();
         private readonly IDay _day = new MockDay();
+        private readonly IClassroom _classroom = new MockClassroom();
 
         public Models.Schedule GetSchedule(string id)
         {
@@ -26,24 +27,91 @@ namespace Schedule.ModelMocks
                     Id = 1,
                     Subject = "Средства визуализации данных",
                     Period = 0,
-                    StartDate = "01/09/2020",
-                    FinishDate = "31/12/2020",
-                    Group = _group.GetGroup(id: 485),
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "485"),
                     Teacher = _teacher.GetTeachers.First(),
                     Lesson = _lesson.GetLesson(id: "5.2"),
-                    Day = _day.GetDay(id: 4)
+                    Day = _day.GetDay(id: 4),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
                 },
                 new Models.Schedule
                 {
                     Id = 2,
                     Subject = "Средства визуализации данных",
                     Period = 0,
-                    StartDate = "01/09/2020",
-                    FinishDate = "31/12/2020",
-                    Group = _group.GetGroup(id: 484),
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "485"),
                     Teacher = _teacher.GetTeachers.First(),
                     Lesson = _lesson.GetLesson(id: "5.2"),
-                    Day = _day.GetDay(id: 4)
+                    Day = _day.GetDay(id: 3),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                },
+                new Models.Schedule
+                {
+                    Id = 3,
+                    Subject = "Вычислительные системы, сети и телекоммуникации",
+                    Period = 0,
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "485"),
+                    Teacher = _teacher.GetTeachers.First(),
+                    Lesson = _lesson.GetLesson(id: "4.2"),
+                    Day = _day.GetDay(id: 4),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                },
+                new Models.Schedule
+                {
+                    Id = 4,
+                    Subject = "Вычислительные системы, сети и телекоммуникации",
+                    Period = 0,
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "484"),
+                    Teacher = _teacher.GetTeachers.First(),
+                    Lesson = _lesson.GetLesson(id: "4.2"),
+                    Day = _day.GetDay(id: 4),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                },
+                new Models.Schedule
+                {
+                    Id = 5,
+                    Subject = "Средства визуализации данных",
+                    Period = 0,
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "484"),
+                    Teacher = _teacher.GetTeachers.First(),
+                    Lesson = _lesson.GetLesson(id: "5.2"),
+                    Day = _day.GetDay(id: 4),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                },
+                new Models.Schedule
+                {
+                    Id = 6,
+                    Subject = "Методы поддержки принятия решений",
+                    Period = 0,
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "484"),
+                    Teacher = _teacher.GetTeachers.First(),
+                    Lesson = _lesson.GetLesson(id: "2.2"),
+                    Day = _day.GetDay(id: 1),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                },
+                new Models.Schedule
+                {
+                    Id = 7,
+                    Subject = "Методы поддержки принятия решений",
+                    Period = 0,
+                    StartDate = new DateTime(2020, 9, 1),
+                    FinishDate = new DateTime(2020, 12, 31),
+                    Group = _group.GetGroup(id: "485"),
+                    Teacher = _teacher.GetTeachers.First(),
+                    Lesson = _lesson.GetLesson(id: "2.2"),
+                    Day = _day.GetDay(id: 1),
+                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
                 }
             };
     }

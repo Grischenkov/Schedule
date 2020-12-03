@@ -10,63 +10,91 @@ namespace Schedule.ModelMocks
 {
     public class MockClass : IClass
     {
-        private readonly IGroup _group = new MockGroup();
-        private readonly ITeacher _teacher = new MockTeacher();
         private readonly IClassroom _classroom = new MockClassroom();
-        private readonly ISchedule _schedule = new MockSchedule();
 
         public Class GetClass(int id)
         {
-            throw new NotImplementedException();
+            return GetClasses.ToList().FirstOrDefault(@class => @class.Id == id);
         }
 
-        public IEnumerable<Class> GetClasses =>
-            new List<Class>
+        public IEnumerable<Class> GetClasses => CalcClasses();
+
+        public DateTime MaxDate { get; } = DateTime.Today.Month > 6 ? new DateTime(DateTime.Today.Year, 12, 31) : new DateTime(DateTime.Today.Year, 2, 31);
+
+        public IEnumerable<Class> CalcClasses()
+        {
+            ISchedule _schedule = new MockSchedule();
+            IEnumerable<Models.Schedule> schedules = _schedule.GetSchedules;
+            List<Class> classes = new List<Class>();
+            int i = 1;
+            foreach (var schedule in schedules)
             {
-                new Class()
+                DateTime date = schedule.StartDate.AddDays(schedule.Day.Id - (int)schedule.StartDate.Date.DayOfWeek);
+
+                switch (schedule.Period)
                 {
-                    Id = 1,
-                    DateTime = "25/11/2020 " + _schedule.GetSchedules.First().Lesson.StartTime,
-                    IsCanceled = false,
-                    NewDateTime = null,
-                    Group = _group.GetGroup(id: 485),
-                    Teacher = _teacher.GetTeachers.First(),
-                    Schedule = _schedule.GetSchedules.First(),
-                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
-                }, 
-                new Class()
-                {
-                    Id = 2,
-                    DateTime = "25/11/2020 " + _schedule.GetSchedules.First().Lesson.StartTime,
-                    IsCanceled = false,
-                    NewDateTime = null,
-                    Group = _group.GetGroup(id: 484),
-                    Teacher = _teacher.GetTeachers.First(),
-                    Schedule = _schedule.GetSchedules.First(),
-                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
-                },
-                new Class()
-                {
-                    Id = 1,
-                    DateTime = "02/12/2020 " + _schedule.GetSchedules.First().Lesson.StartTime,
-                    IsCanceled = false,
-                    NewDateTime = null,
-                    Group = _group.GetGroup(id: 485),
-                    Teacher = _teacher.GetTeachers.First(),
-                    Schedule = _schedule.GetSchedules.First(),
-                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
-                },
-                new Class()
-                {
-                    Id = 2,
-                    DateTime = "02/12/2020 " + _schedule.GetSchedules.First().Lesson.StartTime,
-                    IsCanceled = false,
-                    NewDateTime = null,
-                    Group = _group.GetGroup(id: 484),
-                    Teacher = _teacher.GetTeachers.First(),
-                    Schedule = _schedule.GetSchedules.First(),
-                    Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                    case 2:
+                        date = date.AddDays(7);
+                        while (date.AddDays(14) <= MaxDate.Date)
+                        {
+                            classes.Add(new Class
+                            {
+                                Id = i,
+                                DateTime = new DateTime(date.Year, date.Month, date.Day, schedule.Lesson.StartTime.Hour, schedule.Lesson.StartTime.Minute, schedule.Lesson.StartTime.Second),
+                                IsCanceled = false,
+                                Group = schedule.Group,
+                                Teacher = schedule.Teacher,
+                                Schedule = schedule,
+                                Classroom = schedule.Classroom
+                            });
+                            i++;
+                            date = date.AddDays(14);
+                        }
+
+                        break;
+                    case 1:
+                        date = date.AddDays(0);
+                        while (date.AddDays(14) <= MaxDate.Date)
+                        {
+                            classes.Add(new Class
+                            {
+                                Id = i,
+                                DateTime = new DateTime(date.Year, date.Month, date.Day, schedule.Lesson.StartTime.Hour, schedule.Lesson.StartTime.Minute, schedule.Lesson.StartTime.Second),
+                                IsCanceled = false,
+                                Group = schedule.Group,
+                                Teacher = schedule.Teacher,
+                                Schedule = schedule,
+                                Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
+                            });
+                            i++;
+                            date = date.AddDays(14);
+                        }
+
+                        break;
+                    default:
+                    {
+                        while (date <= MaxDate.Date)
+                        {
+                            classes.Add(new Class
+                            {
+                                Id = i,
+                                DateTime = new DateTime(date.Year, date.Month, date.Day, schedule.Lesson.StartTime.Hour, schedule.Lesson.StartTime.Minute, schedule.Lesson.StartTime.Second),
+                                IsCanceled = false,
+                                Group = schedule.Group,
+                                Teacher = schedule.Teacher,
+                                Schedule = schedule,
+                                Classroom = schedule.Classroom
+                            });
+                            i++;
+                            date = date.AddDays(7);
+                        }
+
+                        break;
+                    }
                 }
-            };
+            }
+
+            return classes;
+        }
     }
 }

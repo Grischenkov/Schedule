@@ -25,7 +25,7 @@ namespace Schedule.ModelMocks
                     Name = "Test", 
                     Surname = "Teacher", 
                     MiddleName = "User", 
-                    Mail = "nikita@grishchenkov.ru", 
+                    Mail = "nikita.grishenkov@gmail.com", 
                     Password = "qwerty", 
                     Faculty = _faculty.GetFaculty(id: 4)
                 }

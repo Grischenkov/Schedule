@@ -26,8 +26,8 @@ namespace Schedule.ModelMocks
                     Surname = "Student", 
                     MiddleName = "User", 
                     Mail = "nikita@grishchenkov.ru", 
-                    Password = "qwerty", 
-                    Group = _group.GetGroup(id: 4)
+                    Password = "qwerty",
+                    Group = _group.GetGroup(id: "485")
                 }
             };
     }

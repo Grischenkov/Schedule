@@ -25,32 +25,32 @@ namespace Schedule.ModelMocks
                 new Faculty
                 {
                     Id = 1, 
-                    Name = "Химии веществ и материалов"
+                    Name = "1 ФАКУЛЬТЕТ"
                 },
                 new Faculty
                 {
                     Id = 2, 
-                    Name = "Химической и биотехнологии"
+                    Name = "2 ФАКУЛЬТЕТ"
                 },
                 new Faculty
                 {
                     Id = 3, 
-                    Name = "Механический"
+                    Name = "3 ФАКУЛЬТЕТ"
                 },
                 new Faculty
                 {
                     Id = 4, 
-                    Name = "Информационных технологий и управления"
+                    Name = "4 ФАКУЛЬТЕТ"
                 },
                 new Faculty
                 {
                     Id = 5, 
-                    Name = "Инженерно-технологический"
+                    Name = "5 ФАКУЛЬТЕТ"
                 },
                 new Faculty
                 {
                     Id = 6, 
-                    Name = "Экономики и мененджмента"
+                    Name = "6 ФАКУЛЬТЕТ"
                 }
             };
     }
