@@ -42,12 +42,11 @@
 <body>
     @if (@Model.GetClass != null)
     {
-        Class _class = Model.GetClass;
         <div id="screen-blocker">
             <div id="class">
                 <div class="subject-head">
                     <div class="title">
-                        <h3>@_class.Schedule.Subject</h3>
+                        <h3>@Model.Class.Schedule.Subject</h3>
                     </div>
                     <div class="close-btn">
                         <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date})">
@@ -64,7 +63,7 @@
                                 <p>Дата:</p>
                             </div>
                             <div class="content">
-                                <p>@_class.DateTime.Date.ToString("dd/MM/yyyy")</p>
+                                <p>@Model.Class.DateTime.Date.ToString("dd/MM/yyyy")</p>
                             </div>
                         </div>
                         <div class="time">
@@ -72,7 +71,7 @@
                                 <p>Время:</p>
                             </div>
                             <div class="content">
-                                <p>@_class.DateTime.TimeOfDay.ToString()</p>
+                                <p>@Model.Class.DateTime.TimeOfDay.ToString()</p>
                             </div>
                         </div>
                         <div class="group">
@@ -80,7 +79,7 @@
                                 <p>Группа:</p>
                             </div>
                             <div class="content">
-                                <p>@_class.Group.Id</p>
+                                <p>@Model.Class.Group.Id</p>
                             </div>
                         </div>
                         <div class="teacher">
@@ -89,7 +88,7 @@
                             </div>
                             <div class="content">
                                 @{
-                                    string name = $"{_class.Teacher.Surname} {_class.Teacher.Name} {_class.Teacher.MiddleName}";
+                                    string name = $"{Model.Class.Teacher.Surname} {Model.Class.Teacher.Name} {Model.Class.Teacher.MiddleName}";
                                     <p>@name</p>
                                 }
                             </div>
@@ -99,20 +98,20 @@
                                 <p>Аудитория:</p>
                             </div>
                             <div class="content">
-                                <p>@_class.Classroom.Id</p>
+                                <p>@Model.Class.Classroom.Id</p>
                             </div>
                         </div>
                         <div class="IsCanceled">
-                            @if (_class.IsCanceled)
+                            @if (Model.Class.IsCanceled)
                             {
                                 <div class="title">
                                     <p>Отменено</p>
                                 </div>
                                 <div></div>
                             }
-                            else if (/*_class.IsPostponed*/_class.IsCanceled == null)
+                            else if (Model.Class.IsPostponed)
                             {
-                                string newDate = $"{_class.NewDateTime.Date:dd/MM/yyyy} {_class.DateTime.TimeOfDay}";
+                                string newDate = $"{Model.Class.NewDateTime.Date:dd/MM/yyyy} {Model.Class.DateTime.TimeOfDay}";
                                 <div class="title">
                                     <p>Перенесено</p>
                                 </div>
@@ -335,6 +334,13 @@
     </main>
 
     <footer>
+        <div class="footer-download" style="display: @Model.DownloadDisplay">
+            <a href="@Url.Action("Download", "Home", new {viewType=Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date})">
+                <button class="download-button" title="Скачать расписание">
+                    Сохранить
+                </button>
+            </a>
+        </div>
         <div class="footer-top">
             <div class="adress">
                 <h3>Адрес</h3>
