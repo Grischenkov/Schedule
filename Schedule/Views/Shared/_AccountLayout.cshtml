@@ -1,0 +1,46 @@
+﻿@if (ViewBag.Message != null)
+{
+    <script charset="utf-8" type="text/javascript">
+
+        window.onload = function () {
+            alert('@ViewBag.Message');
+        };
+    </script>
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="format-detection" content="telephone=no">
+
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="robots" content="">
+
+    <meta name="Author" content="Nikita Grishchenkov">
+    <meta name="Copyright" content="© 2020 Grishchenkov Nikita">
+    <meta name="Adress" content="190013, Россия, Санкт-Петербург, Московский проспект, дом 26">
+
+    <!-- CSS -->
+    <link href="/css/login_register_restore.css" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <!-- JS -->
+    <script src="/js/script.js"></script>
+
+</body>
+</html>

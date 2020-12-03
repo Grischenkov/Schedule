@@ -1,0 +1,118 @@
+﻿@using Schedule.Models.ViewModels
+@model AccountViewModel
+
+@{
+    Layout = "_AccountLayout";
+}
+
+<div class="register block">
+    <div class="head">
+        <div class="back-btn">
+            <a href="@Url.Action("Index", "Home")">
+                <button class="back-button" title="На главную">
+                    <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10"></svg>
+                </button>
+            </a>
+        </div>
+        <div class="title"><h3>Регистрация</h3></div>
+    </div>
+    <form method="post" class="form">
+        <div style="display: @Model.FacultyDisplay">
+            <div class="select">
+                <div class="head">@Model.Faculty</div>
+                <ul class="list" style="display: none;">
+                    @{
+                        foreach (var faculty in Model.GetFaculties)
+                        {
+                            <a href="@Url.Action("Register", new {Faculty = faculty.Name, Course = "", Group = ""})">
+                                <li class="item">@faculty.Name</li>
+                            </a>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="display: @Model.CourseDisplay">
+            <div class="select">
+                <div class="head">@Model.Course</div>
+                <ul class="list" style="display: none;">
+                    @{
+                        foreach (var course in Model.GetCourses)
+                        {
+                            <a href="@Url.Action("Register", new {Faculty = Model.Faculty, Course = course.Name, Group = ""})">
+                                <li class="item">@course.Name</li>
+                            </a>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+        <div style="display: @Model.GroupDisplay">
+            <div class="select">
+                <div class="head" id="GroupId">@Model.Group</div>
+                <ul class="list" style="display: none;">
+                    @{
+                        foreach (var group in Model.GetGroups(Model.Faculty, Model.Course))
+                        {
+                            <a href="@Url.Action("Register", new {Faculty = Model.Faculty, Course = Model.Course, Group = group.Id})">
+                                <li class="item">@group.Id</li>
+                            </a>
+                        }
+                    }
+                </ul>
+            </div>
+            <input type="hidden" name="GroupId" id="GroupId_hidden"/>
+            <script type="text/javascript">
+                setInterval(function () { document.getElementById("GroupId_hidden").value = document.getElementById("GroupId").innerHTML; }, 5);
+            </script>
+        </div>
+        <div class="text-inp" style="display: @Model.ContentDisplay">
+            <span>Фамилия:</span>
+            <div>
+                <input type="text" name="Surname">
+            </div>
+        </div>
+        <div class="text-inp" style="display: @Model.ContentDisplay">
+            <span>Имя:</span>
+            <div>
+                <input type="text" name="Name">
+            </div>
+        </div>
+        <div class="text-inp" style="display: @Model.ContentDisplay">
+            <span>Отчество:</span>
+            <div>
+                <input type="text" , name="MiddleName">
+            </div>
+        </div>
+        <div class="mail-inp" style="display: @Model.ContentDisplay">
+            <span>Почта:</span>
+            <div>
+                <input type="text" name="Mail">
+            </div>
+        </div>
+        <div class="pass-inp" style="display: @Model.ContentDisplay">
+            <span>Пароль:</span>
+            <div>
+                <input type="password" name="Password">
+            </div>
+        </div>
+        <div class="pass-inp" style="display: @Model.ContentDisplay">
+            <span>Подтвердите пароль:</span>
+            <div>
+                <input type="password" name="secondPassword">
+            </div>
+        </div>
+        <div class="buttons" style="display: @Model.ContentDisplay">
+            <div class="register-btn">
+                <a href="@Url.Action("Login", "Account")">
+                    <button class="register-button">Зарегистрироваться</button>
+                </a>
+            </div>
+            <div class="login-btn">
+                <a href="@Url.Action("Login", "Account")">
+                    <p>Войти</p>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>

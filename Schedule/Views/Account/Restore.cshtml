@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "_AccountLayout";
+}
+
+<div class="restore block">
+    <div class="head">
+        <div class="back-btn">
+            <a href="@Url.Action("Index", "Home", new {viewType = "Месяц", Faculty = "", Course = "", Group = ""})">
+                <button class="back-button" title="На главную">
+                    <svg aria-hidden="true" focusable="false" width="10" height="10" viewBox="0 0 10 10"></svg>
+                </button>
+            </a>
+        </div>
+        <div class="title"><h3>Восстановление пароля</h3></div>
+    </div>
+    <div class="description">
+        <p>Введите адресс электронной почты, указаный при регистрации.</p>
+    </div>
+    <form method="post" class="form">
+        <div class="mail-inp">
+            <span>Почта:</span>
+            <div>
+                <input type="text" name="Mail">
+            </div>
+        </div>
+        <div class="buttons">
+            <div class="restore-btn">
+                <a href="@Url.Action("Login", "Account")">
+                    <button class="restore-button">Восстановить</button>
+                </a>
+            </div>
+            <div class="other-btns">
+                <div class="login-btn">
+                    <a href="@Url.Action("Login", "Account")">
+                        <p>Войти</p>
+                    </a>
+                    <p>&ensp;/&ensp;</p>
+                </div>
+                <div class="register-btn">
+                    <a href="@Url.Action("Register", "Account")">
+                        <p>Зарегистрироваться</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
