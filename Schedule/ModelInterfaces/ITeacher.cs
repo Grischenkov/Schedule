@@ -11,5 +11,7 @@ namespace Schedule.ModelInterfaces
         public Teacher GetTeacher(int id);
 
         public IEnumerable<Teacher> GetTeachers { get; }
+
+        public void UpdateTeacher(Teacher teacher);
     }
 }
