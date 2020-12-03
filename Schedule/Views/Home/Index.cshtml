@@ -1,0 +1,219 @@
+﻿@using System.Globalization
+@using Schedule
+@using Schedule.Models.ViewModels
+@model HomeViewModel
+
+@{
+    Layout = "_HomeLayout";
+}
+
+@{
+    if (Model.ViewType == "Неделя")
+    {
+        <div class="week-view" id="week-view">
+            <div class="content-head">
+                @foreach (var day in Model.GetDays)
+                {
+                    <div class="time">
+                        <time>@day.Name</time>
+                    </div>
+                }
+            </div>
+            <div class="content">
+                <div class="line">
+                    <div class="head">
+                        @{
+                            for (int i = 0; i < 5; i++)
+                            {
+                                <a href="@Url.Action("Index", "Home", new {viewType = "День", Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date.StartOfWeek(DayOfWeek.Monday).AddDays(i)})">
+                                    <div class="block-head" title="Показать день">
+                                        <time>@Model.Date.StartOfWeek(DayOfWeek.Monday).AddDays(i).Day</time>
+                                    </div>
+                                </a>
+                            }
+                        }
+                    </div>
+                    <div class="body">
+                        @{
+                            if (!string.IsNullOrEmpty(Model.Faculty) && Model.Faculty != "Выберите факультет" &&
+                                !string.IsNullOrEmpty(Model.Course) && Model.Course != "Выберите курс" &&
+                                !string.IsNullOrEmpty(Model.Group) && Model.Group != "Выберите группу")
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    <div class="block">
+                                        @foreach (var @class in Model.GetClassesOnDay(Model.Date.StartOfWeek(DayOfWeek.Monday).AddDays(i), Model.Group))
+                                        {
+                                            string data = @class.IsCanceled ? $"ОТМЕНЕНО {@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}" : $"{@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}";
+                                            <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date, Id = @class.Id})#screen-blocker">
+                                                <p>@data</p>
+                                            </a>
+                                        }
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.ViewType == "День")
+    {
+        if ((int)Model.Date.DayOfWeek == 0 || (int)Model.Date.DayOfWeek == 6)
+        {
+            Model.Date = Model.Date.AddDays((int)Model.Date.DayOfWeek == 0 ? 1 : 2);
+        }
+        <div class="day-view" id="day-view">
+            <div class="content-head">
+                <div class="time">
+                    <time>@CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(Model.Date.DayOfWeek)</time>
+                </div>
+            </div>
+            <div class="content">
+                <div class="line">
+                    <div class="head">
+                        <a href="@Url.Action("Index", "Home", new {viewType = "День", Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date})">
+                            <div class="block-head" title="Показать день">
+                                <time>@Model.Date.Day</time>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="body">
+                        <div class="block">
+                            @{
+                                if (!string.IsNullOrEmpty(Model.Faculty) && Model.Faculty != "Выберите факультет" &&
+                                    !string.IsNullOrEmpty(Model.Course) && Model.Course != "Выберите курс" &&
+                                    !string.IsNullOrEmpty(Model.Group) && Model.Group != "Выберите группу")
+                                {
+                                    foreach (var @class in Model.GetClassesOnDay(Model.Date, Model.Group))
+                                    {
+                                        string data = @class.IsCanceled ? $"ОТМЕНЕНО {@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}" : $"{@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}";
+                                        <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date, Id = @class.Id})#screen-blocker">
+                                            <p>@data</p>
+                                        </a>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="month-view" id="month-view">
+            <div class="content-head">
+                @foreach (var day in Model.GetDays)
+                {
+                    <div class="time">
+                        <time>@day.Name</time>
+                    </div>
+                }
+            </div>
+            <div class="content">
+                @{
+                    DateTime date1 = new DateTime(Model.Date.Year, Model.Date.Month, 1);
+                    DateTime date2 = new DateTime(Model.Date.Year, Model.Date.Month, 1);
+
+                    int start;
+                    if ((int)date1.DayOfWeek != 0 && (int)date1.DayOfWeek != 6)
+                    {
+                        start = (int)date1.DayOfWeek - 1;
+                    }
+                    else
+                    {
+                        start = 0;
+                        date1 = date1.AddDays((int)date1.DayOfWeek == 0 ? 1 : 2);
+                        date2 = date2.AddDays((int)date2.DayOfWeek == 0 ? 1 : 2);
+                    }
+
+                    for (int l = 0; l < 5; l++)
+                    {
+                        <div class="line">
+                            <div class="head">
+                                @{
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        if (i < start && l == 0)
+                                        {
+                                            <div></div>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Index", "Home", new {viewType = "День", Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = date1})">
+                                                <div class="block-head" title="Показать день">
+                                                    <time>@date1.Day</time>
+                                                </div>
+                                            </a>
+                                            date1 = date1.AddDays(1);
+                                            if (date1.Day == 1 && l != 0)
+                                            {
+                                                for (int z = i + 1; z < 5; z++ )
+                                                {
+                                                    <div></div>
+                                                }
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    date1 = date1.AddDays(2);
+                                }
+                            </div>
+                            <div class="body">
+                                @{
+                                    for (int i = 0; i < 5; i++)
+                                    {
+                                        if (i < start && l == 0)
+                                        {
+                                            <div class="block"></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="block">
+                                                @{
+                                                    if (!string.IsNullOrEmpty(Model.Faculty) && Model.Faculty != "Выберите факультет" &&
+                                                        !string.IsNullOrEmpty(Model.Course) && Model.Course != "Выберите курс" &&
+                                                        !string.IsNullOrEmpty(Model.Group) && Model.Group != "Выберите группу")
+                                                    {
+                                                        foreach (var @class in Model.GetClassesOnDay(date2, Model.Group))
+                                                        {
+                                                            string data;
+                                                            if (@class.IsCanceled)
+                                                            {
+                                                                data = $"ОТМЕНЕНО {@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}";
+                                                            }
+                                                            else if (@class.IsPostponed)
+                                                            {
+                                                                data = $"ПЕРЕНЕСЕНО {@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}";
+                                                            }
+                                                            else
+                                                            {
+                                                                data = $"{@class.DateTime.Hour}:{@class.DateTime.Minute} {@class.Schedule.Subject}";
+                                                            }
+                                                            <a href="@Url.Action("Index", "Home", new {viewType = Model.ViewType, Faculty = Model.Faculty, Course = Model.Course, Group = Model.Group, Date = Model.Date, Id = @class.Id})#screen-blocker">
+                                                                <p>@data</p>
+                                                            </a>
+                                                        }
+
+                                                        date2 = date2.AddDays(1);
+                                                        if (date2.Day == 1 && l != 0)
+                                                        {
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                    date2 = date2.AddDays(2);
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+}
