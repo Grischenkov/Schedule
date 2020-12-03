@@ -11,5 +11,7 @@ namespace Schedule.Models
 
         //Foreign relations
         public List<Class> Classes { get; set; }
+        
+        public List<Schedule> Schedules { get; set; }
     }
 }

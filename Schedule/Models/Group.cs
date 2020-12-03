@@ -7,13 +7,14 @@ namespace Schedule.Models
 {
     public class Group
     {
-        public int Id { get; set; }
-
-        public int Course { get; set; }
-
+        public string Id { get; set; }
+        
         //Foreign keys
         public int FacultyId { get; set; }
         public virtual Faculty Faculty { get; set; }
+
+        public int CourseId { get; set; }
+        public virtual Course Course { get; set; }
 
         //Foreign relations
         public List<Student> Students { get; set; }
