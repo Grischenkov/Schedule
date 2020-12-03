@@ -49,7 +49,6 @@ main {
     padding:            	20px 50px;
     border-radius:      	15px;
     background-color:   	rgb(255, 255, 255);
-    /*grid-template-rows: 	repeat(3, 1fr);*/
 }
 
 .login .block {
@@ -278,4 +277,77 @@ button:hover {
 		display: flex;
 		align-items: center;
 	}
+}
+
+/*--------------Select--------------*/
+.select {
+    width: 100%;
+    margin: 5px auto;
+    height: 100%;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    width: 500px;
+    height: 30px;
+}
+
+.select .head {
+    padding: 7px 7px;
+    border-radius: 10px;
+    display: block;
+}
+
+.select .head::after {
+    right: 20px;
+    width: 10px;
+    height: 6px;
+    bottom: 50%;
+    content: '';
+    display: block;
+    position: absolute;
+    transform: translateY(50%);
+    transition: .2s ease-in;
+    background: url(/img/select-arrow.svg) no-repeat center / cover;
+}
+
+.select .head.open::after {
+    transform: translateY(50%) rotate(180deg);
+}
+
+.select .list {
+    left: 0;
+    right: 0;
+    z-index: 100;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.select .list .item {
+    cursor: pointer;
+    padding: 7px 7px;
+    position: relative;
+    border-top: 1px solid rgba(228, 228, 228, .5);
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.select .list .item:hover {
+	background-color: rgb(242, 242, 242);
+}
+
+.select .head:hover {
+	background-color: rgb(242, 242, 242);
+}
+
+.select a {
+    color: rgb(30, 30, 30);
+    text-decoration: none;
+}
+
+.select a:hover {
+    color: rgb(30, 30, 30);
+    text-decoration: none;
 }
