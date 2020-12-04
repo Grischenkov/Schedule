@@ -38,5 +38,15 @@ namespace Schedule.ModelMocks
                     Faculty = _faculty.GetFaculty(id: 4)
                 }
             };
+
+        public void AddGroup(Group @group)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateGroup(Group @group)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

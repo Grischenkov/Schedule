@@ -114,5 +114,20 @@ namespace Schedule.ModelMocks
                     Classroom = _classroom.GetClassroom(id: "КАФ. САПРиУ")
                 }
             };
+
+        public void AddSchedule(Models.Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSchedule(Models.Schedule schedule)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteSchedules()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -30,5 +30,15 @@ namespace Schedule.ModelMocks
                     Group = _group.GetGroup(id: "485")
                 }
             };
+
+        public void AddStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateStudent(Student student)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

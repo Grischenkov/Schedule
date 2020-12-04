@@ -18,6 +18,20 @@ namespace Schedule.ModelMocks
         }
 
         public IEnumerable<Class> GetClasses => CalcClasses();
+        public void UpdateClass(Class @class)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddClass(Class @class)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteClasses()
+        {
+            throw new NotImplementedException();
+        }
 
         public DateTime MaxDate { get; } = DateTime.Today.Month > 6 ? new DateTime(DateTime.Today.Year, 12, 31) : new DateTime(DateTime.Today.Year, 2, 31);
 

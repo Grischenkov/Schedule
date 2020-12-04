@@ -30,5 +30,10 @@ namespace Schedule.ModelMocks
                     Faculty = _faculty.GetFaculty(id: 4)
                 }
             };
+
+        public void UpdateTeacher(Teacher teacher)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
