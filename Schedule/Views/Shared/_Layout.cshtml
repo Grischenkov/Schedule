@@ -6,97 +6,96 @@
             alert('@ViewBag.Message');
         };
     </script>
-
 }
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>@ViewBag.Title</title>
+    <head>
+        <title>@ViewBag.Title</title>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="format-detection" content="telephone=no">
 
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="robots" content="">
+        <meta name="description" content="">
+        <meta name="keywords" content="">
+        <meta name="robots" content="">
 
-    <meta name="Author" content="Nikita Grishchenkov">
-    <meta name="Copyright" content="© 2020 Grishchenkov Nikita">
-    <meta name="Adress" content="190013, Россия, Санкт-Петербург, Московский проспект, дом 26">
+        <meta name="Author" content="Nikita Grishchenkov">
+        <meta name="Copyright" content="© 2020 Grishchenkov Nikita">
+        <meta name="Adress" content="190013, Россия, Санкт-Петербург, Московский проспект, дом 26">
 
-    <!-- CSS -->
-    <link href="/css/account.css" rel="stylesheet">
+        <!-- CSS -->
+        <link href="/css/account.css" rel="stylesheet">
 
-    <!-- JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
 
-<body>
-    <header>
-        <div class="header-top">
-            <div class="logo">
-                <a href="/Home">
-                    <img src="/img/logo.svg" alt="Санкт-Петербургский государственный технологический институт">
-                </a>
-            </div>
-            <div class="title">
-                <h3 class="title">
-                    @ViewBag.Title
-                </h3>
-            </div>
-            <div class="account">
-                @{
-                    if (Model.User != null)
-                    {
-                        if (Model.User.IsTeacher)
+    <body>
+        <header>
+            <div class="header-top">
+                <div class="logo">
+                    <a href="/Home">
+                        <img src="/img/logo.svg" alt="Санкт-Петербургский государственный технологический институт">
+                    </a>
+                </div>
+                <div class="title">
+                    <h3 class="title">
+                        @ViewBag.Title
+                    </h3>
+                </div>
+                <div class="account">
+                    @{
+                        if (Model.User != null)
                         {
-                            string name = $"{Model.Teacher.Surname} {Model.Teacher.Name} {Model.Teacher.MiddleName}, Teacher";
-                            <a href="/Account/Login">@name</a>
+                            if (Model.User.IsTeacher)
+                            {
+                                string name = $"{Model.Teacher.Surname} {Model.Teacher.Name} {Model.Teacher.MiddleName}, Teacher";
+                                <a href="/Account/Login">@name</a>
+                            }
+                            else
+                            {
+                                string name = $"{Model.Student.Surname} {Model.Student.Name} {Model.Student.MiddleName}, гр.{Model.Student.Group.Id}";
+                                <a href="/Account/Login">@name</a>
+                            }
                         }
                         else
                         {
-                            string name = $"{Model.Student.Surname} {Model.Student.Name} {Model.Student.MiddleName}, гр.{Model.Student.Group.Id}";
-                            <a href="/Account/Login">@name</a>
+                            <a href="/Account/Login">Личный кабинет</a>
                         }
                     }
-                    else
-                    {
-                        <a href="/Account/Login">Личный кабинет</a>
-                    }
-                }
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <main>
-        @RenderBody()
-    </main>
+        <main>
+            @RenderBody()
+        </main>
 
-    <footer>
-        <div class="footer-top">
-            <div class="adress">
-                <h3>Адрес</h3>
-                <p>Федеральное государственное бюджетное образовательное учреждение высшего образования "Санкт-Петербургский государственный технологический институт (технический университет)"</p>
-                <p>190013, Россия, Санкт-Петербург, Московский проспект, дом 26</p>
+        <footer>
+            <div class="footer-top">
+                <div class="adress">
+                    <h3>Адрес</h3>
+                    <p>Федеральное государственное бюджетное образовательное учреждение высшего образования "Санкт-Петербургский государственный технологический институт (технический университет)"</p>
+                    <p>190013, Россия, Санкт-Петербург, Московский проспект, дом 26</p>
+                </div>
+                <div class="contacts">
+                    <h3>Контакты</h3>
+                    <p><a href="tel:+79310079579">+7 931 007-95-79</a></p>
+                    <p><a href="mailto:nikita.grishenkov@gmail.com">nikita.grishenkov@gmail.com</a></p>
+                </div>
             </div>
-            <div class="contacts">
-                <h3>Контакты</h3>
-                <p><a href="tel:+79310079579">+7 931 007-95-79</a></p>
-                <p><a href="mailto:nikita.grishenkov@gmail.com">nikita.grishenkov@gmail.com</a></p>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <h3>Copyright</h3>
+                    <p><a href="https://github.com/Grischenkov/Schedule">© 2020 Grishchenkov Nikita</a></p>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="copyright">
-                <h3>Copyright</h3>
-                <p><a href="https://github.com/Grischenkov/Schedule">© 2020 Grishchenkov Nikita</a></p>
-            </div>
-        </div>
-    </footer>
+        </footer>
 
-    <!-- JS -->
-    <script src="/js/script.js"></script>
+        <!-- JS -->
+        <script src="/js/script.js"></script>
 
-</body>
+    </body>
 </html>
