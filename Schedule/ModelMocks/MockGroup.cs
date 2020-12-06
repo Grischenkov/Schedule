@@ -10,8 +10,9 @@ namespace Schedule.ModelMocks
     public class MockGroup : IGroup
     {
         private readonly IFaculty _faculty = new MockFaculty();
+        private readonly ICourse _course = new MockCourse();
 
-        public Group GetGroup(int id)
+        public Group GetGroup(string id)
         {
             foreach (var group in GetGroups.ToList().Where(group => group.Id == id))
             {
@@ -26,16 +27,26 @@ namespace Schedule.ModelMocks
             {
                 new Group
                 {
-                    Id = 484,
-                    Course = 3,
+                    Id = "484",
+                    Course = _course.GetCourse(id: 3),
                     Faculty = _faculty.GetFaculty(id: 4)
                 },
                 new Group
                 {
-                    Id = 485,
-                    Course = 3,
+                    Id = "485",
+                    Course = _course.GetCourse(id: 3),
                     Faculty = _faculty.GetFaculty(id: 4)
                 }
             };
+
+        public void AddGroup(Group @group)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateGroup(Group @group)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

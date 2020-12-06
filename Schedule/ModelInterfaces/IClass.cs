@@ -11,5 +11,11 @@ namespace Schedule.ModelInterfaces
         public Class GetClass(int id);
 
         public IEnumerable<Class> GetClasses { get; }
+
+        public void UpdateClass(Class @class);
+
+        public void AddClass(Class @class);
+
+        public void DeleteClasses();
     }
 }

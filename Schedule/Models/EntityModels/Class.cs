@@ -9,11 +9,13 @@ namespace Schedule.Models
     {
         public int Id { get; set; }
 
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
 
         public bool IsCanceled { get; set; }
 
-        public string NewDateTime { get; set; }
+        public bool IsPostponed { get; set; }
+
+        public DateTime NewDateTime { get; set; }
 
         //Foreign keys
         public int GroupId { get; set; }

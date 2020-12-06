@@ -25,62 +25,62 @@ namespace Schedule.ModelMocks
                 new Lesson
                 {
                     Id = "1.1", 
-                    StartTime = "09:30"
+                    StartTime = new DateTime(2000, 1, 1, 9, 30, 0)
                 },
                 new Lesson
                 {
-                    Id = "1.2", 
-                    StartTime = "10:00"
+                    Id = "1.2",
+                    StartTime = new DateTime(2000, 1, 1, 10, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "2.1", 
-                    StartTime = "11:30"
+                    Id = "2.1",
+                    StartTime = new DateTime(2000, 1, 1, 11, 30, 0)
                 },
                 new Lesson
                 {
-                    Id = "2.2", 
-                    StartTime = "12:00"
+                    Id = "2.2",
+                    StartTime = new DateTime(2000, 1, 1, 12, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "3.1", 
-                    StartTime = "14:00"
+                    Id = "3.1",
+                    StartTime = new DateTime(2000, 1, 1, 14, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "3.2", 
-                    StartTime = "14:30"
+                    Id = "3.2",
+                    StartTime = new DateTime(2000, 1, 1, 14, 30, 0)
                 },
                 new Lesson
                 {
-                    Id = "4.1", 
-                    StartTime = "16:00"
+                    Id = "4.1",
+                    StartTime = new DateTime(2000, 1, 1, 16, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "4.2", 
-                    StartTime = "16:30"
+                    Id = "4.2",
+                    StartTime = new DateTime(2000, 1, 1, 16, 30, 0)
                 },
                 new Lesson
                 {
-                    Id = "5.1", 
-                    StartTime = "18:00"
+                    Id = "5.1",
+                    StartTime = new DateTime(2000, 1, 1, 18, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "5.2", 
-                    StartTime = "18:30"
+                    Id = "5.2",
+                    StartTime = new DateTime(2000, 1, 1, 18, 30, 0)
                 },
                 new Lesson
                 {
-                    Id = "6.1", 
-                    StartTime = "20:00"
+                    Id = "6.1",
+                    StartTime = new DateTime(2000, 1, 1, 20, 00, 0)
                 },
                 new Lesson
                 {
-                    Id = "6.2", 
-                    StartTime = "20:30"
+                    Id = "6.2",
+                    StartTime = new DateTime(2000, 1, 1, 20, 30, 0)
                 }
             };
     }

@@ -10,5 +10,11 @@ namespace Schedule.ModelInterfaces
         public Models.Schedule GetSchedule(string id);
 
         public IEnumerable<Models.Schedule> GetSchedules { get; }
+
+        public void AddSchedule(Models.Schedule schedule);
+
+        public void UpdateSchedule(Models.Schedule schedule);
+
+        public void DeleteSchedules();
     }
 }

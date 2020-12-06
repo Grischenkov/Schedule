@@ -13,9 +13,9 @@ namespace Schedule.Models
 
         public int Period { get; set; }
 
-        public string StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
-        public string FinishDate { get; set; }
+        public DateTime FinishDate { get; set; }
 
         //Foreign keys
         public int GroupId { get; set; }
@@ -29,6 +29,9 @@ namespace Schedule.Models
         
         public string DayId { get; set; }
         public virtual Day Day { get; set; }
+
+        public string ClassroomId { get; set; }
+        public virtual Classroom Classroom { get; set; }
 
         //Foreign relations
         public List<Class> Classes { get; set; }
