@@ -20,7 +20,7 @@ namespace Schedule.Models
         public string Password { get; set; }
 
         //Foreign keys
-        public int GroupId { get; set; }
+        public string GroupId { get; set; }
         public virtual Group Group { get; set; }
     }
 }

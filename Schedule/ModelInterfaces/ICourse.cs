@@ -6,8 +6,10 @@ using Schedule.Models;
 
 namespace Schedule.ModelInterfaces
 {
-    public interface IClassroom
+    public interface ICourse
     {
-        public Classroom GetClassroom(string id);
+        public Course GetCourse(int id);
+
+        public IEnumerable<Course> GetCourses { get; }
     }
 }

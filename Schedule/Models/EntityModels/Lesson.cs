@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 
 namespace Schedule.Models
 {
-    public class Classroom
+    public class Lesson
     {
         public string Id { get; set; }
 
+        public DateTime StartTime { get; set; }
+
         //Foreign relations
-        public List<Class> Classes { get; set; }
+        public List<Schedule> Schedules { get; set; }
     }
 }

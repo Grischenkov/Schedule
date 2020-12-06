@@ -8,8 +8,12 @@ namespace Schedule.ModelInterfaces
 {
     public interface IGroup
     {
-        public Group GetGroup(int id);
+        public Group GetGroup(string id);
 
         public IEnumerable<Group> GetGroups { get; }
+
+        public void AddGroup(Group group);
+
+        public void UpdateGroup(Group group);
     }
 }
