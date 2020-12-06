@@ -13,6 +13,8 @@ namespace Schedule.Models
 
         public bool IsCanceled { get; set; }
 
+        public bool IsPostponed { get; set; }
+
         public DateTime NewDateTime { get; set; }
 
         //Foreign keys
